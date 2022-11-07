@@ -11,11 +11,11 @@ def main():
     GREEN = (0, 255, 0)
     screen.fill(GREEN)
     pygame.display.flip()
-    while running == True:
+    while True:
         for event in pygame.event.get():
             print(event)
             if event.type == pygame.QUIT:
                 pygame.display.quit()
-                running == False
+                break
             pygame.draw.line(200, 0)
 main()
