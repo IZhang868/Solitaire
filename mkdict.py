@@ -15,7 +15,5 @@ for card in cards:
     card_dict[card]="PNG/" + card +".png"
     
 print(card_dict)
-
-
-                     
+   
             
