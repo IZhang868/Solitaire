@@ -4,6 +4,7 @@ import pygame
 import sys
 from pygame.locals import *
 import PNG
+def card_random():
 def main():
     pygame.init()
     screen = pygame.display.set_mode((1600, 800))
