@@ -30,9 +30,8 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((1600, 800))
     running = True
-    Board_Color = (6, 124, 53)
-    BLACK = (0, 0, 0)
-    screen.fill(Board_Color)
+    GREEN = (0, 255, 0)
+    screen.fill(GREEN)
     pygame.display.flip()
     shuffled_cards()
     while True:
@@ -43,6 +42,7 @@ def main():
             get_cells(x,y)
             if event.type == pygame.QUIT:
                 pygame.display.quit()
+<<<<<<< HEAD
             elif event.type == MOUSEBUTTONUP:
                 print(pygame.mouse.get_pos())
             elif event.type == MOUSEBUTTONDOWN:
@@ -52,3 +52,8 @@ def main():
             pygame.draw.line(screen, BLACK, (0, 400), (300,400))
         pygame.display.flip()    
 main()
+=======
+                break
+            pygame.draw.line(200, 0)
+main()
+>>>>>>> 80ef2bd09979364fc88ebd8981da848d42fe093b
