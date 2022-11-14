@@ -5,6 +5,7 @@ cards = []
 for face in f:
     for suit in s:
         cards.append(str(face)+str(suit))
+print(len(cards))
         
         
 print(cards)
