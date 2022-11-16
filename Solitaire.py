@@ -61,7 +61,7 @@ def shuffle(dk):
         
 def get_cells(x,y):
     if x < 300:
-        if y < 300:
+        if y < 470:
             return 0
 
 
@@ -73,7 +73,7 @@ def main():
     deck = shuffle(deck)
     
     pygame.init()
-    screen = pygame.display.set_mode((1600, 800))
+    screen = pygame.display.set_mode((1920, 1080))
     running = True
     GREEN = (0, 255, 0)
     BLACK = (0,0,0)
@@ -82,19 +82,24 @@ def main():
     
     while True:
         for event in pygame.event.get():
-            
             x,y = pygame.mouse.get_pos()
             print (x)
             get_cells(x,y)
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.type == KEYDOWN:
                 pygame.display.quit()
             elif event.type == MOUSEBUTTONUP:
                 print(pygame.mouse.get_pos())
-            elif event.type == MOUSEBUTTONDOWN:
+            elif event.type == MOUSEBUTTONDOWN and get_cells(x,y) == 0:
                 img = pygame.image.load(imgs[deck.pop()])
                 print('1')
-                screen.blit(img, (pygame.mouse.get_pos()))
-            pygame.draw.line(screen, BLACK, (300,0), (300,400))
-            pygame.draw.line(screen, BLACK, (0, 400), (300,400))
+                screen.blit(img, (0, 0))
+            
+            img2 = pygame.image.load('resized 2.png')
+            screen.blit(img2, (0,0))
+            pygame.draw.line(screen, BLACK, (300,0), (300,470))
+            pygame.draw.line(screen, BLACK, (0, 470), (300,470))
+            pygame.draw.line(screen, BLACK, (570,470), (1920,470))
+            pygame.draw.line(screen, BLACK, (570,470), (570, 0))
+            pygame.draw.line(screen, BLACK, (920,470), (920, 0))
         pygame.display.flip()    
 main()
