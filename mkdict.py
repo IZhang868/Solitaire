@@ -1,4 +1,4 @@
-def make_card_deck():
+
 f = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
 s = ['S','H','D','C']
 
@@ -16,6 +16,5 @@ card_dict = {}
 for card in cards:
     card_dict[card]="PNG/" + card +".png"
     
-return card_dict
    
             
