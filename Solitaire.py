@@ -94,12 +94,5 @@ def main():
                 print('1')
                 screen.blit(img, (0, 0))
             
-            img2 = pygame.image.load('resized 2.png')
-            screen.blit(img2, (0,0))
-            pygame.draw.line(screen, BLACK, (300,0), (300,470))
-            pygame.draw.line(screen, BLACK, (0, 470), (300,470))
-            pygame.draw.line(screen, BLACK, (570,470), (1920,470))
-            pygame.draw.line(screen, BLACK, (570,470), (570, 0))
-            pygame.draw.line(screen, BLACK, (920,470), (920, 0))
         pygame.display.flip()    
 main()
