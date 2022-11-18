@@ -58,18 +58,47 @@ def shuffle(dk):
         
     return shuffled_deck
     
-        
+
 def get_cells(x,y):
+    
+    #draw card
     if x < 300 and x > 0:
         if y < 300:
             return 0,0
-
-    if x < 770 and x > 570:
+    #ace area
+    if x < 770 and x > 570: 
         if y < 310:
             return 570,0
+    #first row
     if y > 300:
         if x < 300 and x >= 0:
             return 0,310
+    #second row
+    if y > 300:
+        if x > 300 and x <= 450:
+            return 250,310
+    #third row
+    if y > 300 and y < 610:
+        if x > 500 and x <= 700:
+            return 500,310
+    #fourth row
+    if y > 300 and y < 610:
+        if x > 750 and x <= 950:
+            return 750,310
+    #fifth row
+    if y > 300 and y < 610:
+        if x > 1000 and x <= 1200:
+            return 1000, 310
+    #sixth row
+    if y >300 and y < 610:
+        if x > 1250 and x <= 1450:
+            return 1250,310
+    #7th row
+    if y > 300 and y < 610:
+        if x > 1500 and x < 1700:
+            return 1500, 310
+    #ace slot 2
+    
 
 def main():
     deck = make_card_deck()
@@ -97,16 +126,18 @@ def main():
                 pygame.display.quit()
             elif event.type == MOUSEBUTTONUP:
                 print(pygame.mouse.get_pos())
-            #for i in deck:
-                
-                img = pygame.image.load(imgs[deck.pop()])
-                print(img)
-                print('1')
-                screen.blit(img, get_cells(x,y))
+                c = get_cells(x,y) # (0,0)
+                if(c in [(0,0), (570,0), (0,310), (250,310), (500,310), (750,310), (1000,310), (1250,310), (1500,310)]):
+                    img = pygame.image.load(imgs[deck.pop()])
+                    print(img)
+                    print('1')
+                    screen.blit(img, c)
+               # if screen.blit(img, get_cells(x,y)):
+                    
             #draw from deck lines
             pygame.draw.line(screen, BLACK, (200,0), (200,310))
             pygame.draw.line(screen, BLACK, (0, 310), (200,310))
-            #Upper ace grid
+            #Upper ace grid + ace slot 1
             pygame.draw.line(screen, BLACK, (570,310), (1920,310))
             pygame.draw.line(screen, BLACK, (570,310), (570, 0))
             pygame.draw.line(screen, BLACK, (770,310), (770, 0))
@@ -121,7 +152,32 @@ def main():
             #third row
             pygame.draw.line(screen, BLACK, (500,610), (700, 610))
             pygame.draw.line(screen, RED, (500,310), (700, 310))
+            pygame.draw.line(screen, BLACK, (500,310), (500,610))
             pygame.draw.line(screen, BLACK, (700,310), (700,610))
-            pygame.draw.line(screen, BLACK, (850,310), (850,610))
+            #Fourth row
+            pygame.draw.line(screen, BLACK, (750,310), (750,610))
+            pygame.draw.line(screen, BLACK, (950,310), (950,610))
+            pygame.draw.line(screen, BLACK, (750,610), (950,610))
+            #fifth row
+            pygame.draw.line(screen, BLACK, (1000,310), (1000,610))
+            pygame.draw.line(screen, BLACK, (1200,310), (1200,610))
+            pygame.draw.line(screen, BLACK, (1000,610), (1200,610))
+            #sixth row
+            pygame.draw.line(screen, BLACK, (1250,310), (1250,610))
+            pygame.draw.line(screen, BLACK, (1450,310), (1450,610))
+            pygame.draw.line(screen, BLACK, (1250,610), (1450,610))
+            #last row
+            pygame.draw.line(screen, BLACK, (1500,310), (1500,610))
+            pygame.draw.line(screen, BLACK, (1700,310), (1700,610))
+            pygame.draw.line(screen, BLACK, (1500,610), (1700,610))
+            #Ace slot 2
+            pygame.draw.line(screen, BLACK, (820, 0), (820,310))
+            pygame.draw.line(screen, BLACK, (1020,310), (1020, 0))
+            #Ace slot 3
+            pygame.draw.line(screen, BLACK, (1070,310), (1070,0))
+            pygame.draw.line(screen, BLACK, (1270,310), (1270,0))
+            #ace slot 4
+            pygame.draw.line(screen, BLACK, (1320,310), (1320,0))
+            pygame.draw.line(screen, BLACK, (1520,310), (1520,0))
         pygame.display.flip()    
 main()
