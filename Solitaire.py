@@ -44,6 +44,7 @@ def make_card_dict(cards):
     #        'KS': 'PNG/KS.png', 'KH': 'PNG/KH.png', 'KD': 'PNG/KD.png', 'KC': 'PNG/KC.png',
     #        'AS': 'PNG/AS.png', 'AH': 'PNG/AH.png', 'AD': 'PNG/AD.png', 'AC': 'PNG/AC.png'}
 
+
 def shuffle(dk):
     shuffled_deck=[]
     
@@ -62,8 +63,8 @@ def shuffle(dk):
 def get_cells(x,y):
     
     #draw card
-    if x < 300 and x > 0:
-        if y < 300:
+    if x < 200 and x > 0:
+        if y < 300 and y > 0:
             return 0,0
     #ace area
     if x < 770 and x > 570: 
@@ -71,7 +72,7 @@ def get_cells(x,y):
             return 570,0
     #first row
     if y > 300:
-        if x < 300 and x >= 0:
+        if x < 200 and x >= 0:
             return 0,310
     #second row
     if y > 300:
@@ -98,7 +99,17 @@ def get_cells(x,y):
         if x > 1500 and x < 1700:
             return 1500, 310
     #ace slot 2
-    
+    if y < 310:
+        if x > 820 and x < 1020:
+            return 820, 0
+    #ace slot 3
+    if y < 310:
+        if x > 1070 and x < 1270:
+            return 1070, 0
+    #ace slot 4
+    if y <310:
+        if x > 1320 and x < 1520:
+            return 1320, 0
 
 def main():
     deck = make_card_deck()
@@ -106,7 +117,7 @@ def main():
     # print(deck)
     # print(imgs)
     deck = shuffle(deck)
-    
+    aces = ['AD_ltl.png', 'AH_ltl.png', 'AS_ltl.png', 'AC_ltl.png']
     pygame.init()
     screen = pygame.display.set_mode((1920, 1080))
     running = True
@@ -120,19 +131,20 @@ def main():
         
         for event in pygame.event.get():
             x,y = pygame.mouse.get_pos()
-            print (x)
+            #print (x)
             get_cells(x,y)
             if event.type == pygame.QUIT or event.type == KEYDOWN:
                 pygame.display.quit()
             elif event.type == MOUSEBUTTONUP:
                 print(pygame.mouse.get_pos())
                 c = get_cells(x,y) # (0,0)
-                if(c in [(0,0), (570,0), (0,310), (250,310), (500,310), (750,310), (1000,310), (1250,310), (1500,310)]):
+                if(c in [(0,0), (570,0), (0,310), (250,310), (500,310), (750,310), (1000,310), (1250,310), (1500,310), (820, 0), (1070, 0), (1320, 0)]):
                     img = pygame.image.load(imgs[deck.pop()])
                     print(img)
                     print('1')
                     screen.blit(img, c)
-               # if screen.blit(img, get_cells(x,y)):
+                    
+                    
                     
             #draw from deck lines
             pygame.draw.line(screen, BLACK, (200,0), (200,310))
@@ -179,5 +191,7 @@ def main():
             #ace slot 4
             pygame.draw.line(screen, BLACK, (1320,310), (1320,0))
             pygame.draw.line(screen, BLACK, (1520,310), (1520,0))
+
+            
         pygame.display.flip()    
 main()
